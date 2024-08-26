@@ -22,22 +22,34 @@ import WorkIcon from '@mui/icons-material/Work';
 import InfoIcon from '@mui/icons-material/Info';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import { height } from '@mui/system';
-
+import { useRouter } from 'next/navigation';
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const app = useRouter();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
+  const handleCloseNavMenu = (event) => {
+    app.push("/");
+  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleHome = (event) => {
+    app.push("/")
+  };
+  const handleProject = (event) => {
+    app.push("/project")
+  };
+  const handleContact= (event) => {
+    app.push("/contact")
+  };
+  const handleAbout = (event) => {
+    app.push("/about")
   };
 
   const handleCloseUserMenu = () => {
@@ -123,16 +135,16 @@ function ResponsiveAppBar() {
               display: { xs: 'block', md: 'none' },
             }}
           >
-            <MenuItem onClick={handleCloseNavMenu}>
+            <MenuItem onClick={handleHome}>
               <Typography textAlign="center">Home</Typography>
             </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
+            <MenuItem onClick={handleProject}>
               <Typography textAlign="center">Projects</Typography>
             </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
+            <MenuItem onClick={handleAbout}>
               <Typography textAlign="center">About</Typography>
             </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
+            <MenuItem onClick={handleContact}>
               <Typography textAlign="center">Contact</Typography>
             </MenuItem>
           </Menu>
@@ -146,28 +158,28 @@ function ResponsiveAppBar() {
             }}
           >
             <Button
-              onClick={handleCloseNavMenu}
+              onClick={handleHome}
               sx={{ fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', my: 5, marginLeft: 8, color: 'white', display: 'flex', alignItems: 'center' }}
             >
               <HomeIcon sx={{ mr: 1 }} />
               Home
             </Button>
             <Button
-              onClick={handleCloseNavMenu}
+              onClick={handleProject}
               sx={{ fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', my: 5, marginLeft: 8, color: 'white', display: 'flex', alignItems: 'center' }}
             >
               <WorkIcon sx={{ mr: 1 }} />
               Projects
             </Button>
             <Button
-              onClick={handleCloseNavMenu}
+              onClick={handleAbout}
               sx={{ fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', my: 5, marginLeft: 8, color: 'white', display: 'flex', alignItems: 'center' }}
             >
               <InfoIcon sx={{ mr: 1 }} />
               About
             </Button>
             <Button
-              onClick={handleCloseNavMenu}
+              onClick={handleContact}
               sx={{ fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', my: 5, marginLeft: 8, color: 'white', display: 'flex', alignItems: 'center' }}
             >
               <ContactMailIcon sx={{ mr: 1 }} />

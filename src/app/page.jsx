@@ -3,7 +3,10 @@
 
 import React from 'react';
 import { Typography, Box, Button, Container, Grid } from '@mui/material';
-import Skills from '@/app/skills/skills';
+import Skills from '@/app/skills/page';
+import AboutMe from '@/app/about/page';
+import Projects from './project/page';
+import ContactMe from './contact/page';
 export default function Home() {
   return (
     <>
@@ -61,6 +64,9 @@ export default function Home() {
       </Container>
     </Box>
     <Skills/>
+    <AboutMe/>
+    <Projects/>
+    <ContactMe/>
     </>
   );
 }
