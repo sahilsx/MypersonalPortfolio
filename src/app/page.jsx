@@ -7,6 +7,7 @@ import Skills from '@/app/skills/page';
 import AboutMe from '@/app/about/page';
 import Projects from './project/page';
 import ContactMe from './contact/page';
+import 'animate.css';
 export default function Home() {
   return (
     <>
@@ -27,10 +28,10 @@ export default function Home() {
         
           {/* Right Side - Text */}
           <Grid item xs={12} md={6}>
-            <Typography variant="h3" component="h1" sx={{ fontWeight: 'bold' }}>
-              Hi, my name is <span style={{ color: '#AA00FF' }}>Sahil Altaf</span>
+            <Typography className=" animate__animated animate__flipInX  animate__infinite animate__slower animate__delay-2s " variant="h3" component="h1" sx={{ fontWeight: 'bold' }}>
+              Hi, my name is <span  style={{ color: '#AA00FF' }}>Sahil Altaf</span>
             </Typography>
-            <Typography variant="h4" component="h2" sx={{ marginTop: 2, fontWeight: '300' }}>
+            <Typography className=" animate__animated animate__flipInY  animate__infinite animate__slower animate__delay-2s " variant="h4" component="h2" sx={{ marginTop: 2, fontWeight: '300' }}>
               And I am a passionate <span style={{ color: '#AA00FF' }}>Software Engineer</span>
             </Typography>
             <Box mt={4}>

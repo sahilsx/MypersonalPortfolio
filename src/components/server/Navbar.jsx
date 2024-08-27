@@ -23,7 +23,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import { height } from '@mui/system';
 import { useRouter } from 'next/navigation';
-
+import 'animate.css';
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -136,7 +136,7 @@ function ResponsiveAppBar() {
             }}
           >
             <MenuItem onClick={handleHome}>
-              <Typography textAlign="center">Home</Typography>
+              <Typography  textAlign="center">Home</Typography>
             </MenuItem>
             <MenuItem onClick={handleProject}>
               <Typography textAlign="center">Projects</Typography>
@@ -160,6 +160,7 @@ function ResponsiveAppBar() {
             <Button
               onClick={handleHome}
               sx={{ fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', my: 5, marginLeft: 8, color: 'white', display: 'flex', alignItems: 'center' }}
+              className=" animate__animated animate__rubberBand  animate__infinite animate__slower animate__delay-2s "
             >
               <HomeIcon sx={{ mr: 1 }} />
               Home
@@ -167,6 +168,7 @@ function ResponsiveAppBar() {
             <Button
               onClick={handleProject}
               sx={{ fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', my: 5, marginLeft: 8, color: 'white', display: 'flex', alignItems: 'center' }}
+              className=" animate__animated animate__shakeY  animate__infinite animate__slower animate__delay-2s "
             >
               <WorkIcon sx={{ mr: 1 }} />
               Projects
@@ -174,6 +176,7 @@ function ResponsiveAppBar() {
             <Button
               onClick={handleAbout}
               sx={{ fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', my: 5, marginLeft: 8, color: 'white', display: 'flex', alignItems: 'center' }}
+              className=" animate__animated animate__wobble animate__infinite animate__slower animate__delay-2s "
             >
               <InfoIcon sx={{ mr: 1 }} />
               About
@@ -181,6 +184,7 @@ function ResponsiveAppBar() {
             <Button
               onClick={handleContact}
               sx={{ fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', my: 5, marginLeft: 8, color: 'white', display: 'flex', alignItems: 'center' }}
+              className=" animate__animated animate__jello  animate__infinite animate__slower animate__delay-2s "
             >
               <ContactMailIcon sx={{ mr: 1 }} />
               Contact

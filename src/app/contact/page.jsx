@@ -47,7 +47,7 @@ export default function ContactMe() {
             <Box>
               <IconButton
                 aria-label="Instagram"
-                href="https://www.instagram.com/"
+                href="https://instagram.com/_sahil.altaf?igshid=NzZlODBkYWE4Ng=="
                 target="_blank"
                 sx={{ color: '#E1306C', mr: 2 }} // Added space between icons
               >
@@ -55,7 +55,7 @@ export default function ContactMe() {
               </IconButton>
               <IconButton
                 aria-label="GitHub"
-                href="https://github.com/"
+                href="https://github.com/sahilsx"
                 target="_blank"
                 sx={{ color: '#FFFFFF', mr: 2 }} // Added space between icons
               >
@@ -63,7 +63,7 @@ export default function ContactMe() {
               </IconButton>
               <IconButton
                 aria-label="LinkedIn"
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bj5gjHcQzRdm9WSTJgS0lyw%3D%3D"
                 target="_blank"
                 sx={{ color: '#0A66C2', mr: 2 }} // Added space between icons
               >
@@ -71,7 +71,7 @@ export default function ContactMe() {
               </IconButton>
               <IconButton
                 aria-label="Email"
-                href="mailto:youremail@example.com"
+                href="mailto:itxsaaho@gmail.com"
                 sx={{ color: '#D44638' }} // No need for `mr` on the last icon
               >
                 <EmailIcon fontSize="large" />
