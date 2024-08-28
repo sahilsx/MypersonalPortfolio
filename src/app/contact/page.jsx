@@ -26,7 +26,7 @@ export default function ContactMe() {
             textAlign: 'center',
           }}
         >
-          <Typography variant="h3" component="h3" sx={{ fontWeight: 'bold' }}>
+          <Typography  className=" animate__animated animate__rollIn animate__infinite animate__slower animate__delay-2s "  variant="h3" component="h3" sx={{ fontWeight: 'bold' }}>
             Contact Me
           </Typography>
         </Box>
@@ -38,18 +38,21 @@ export default function ContactMe() {
               src="https://res.cloudinary.com/dfi2vbznv/image/upload/v1723732226/C360_20240623-203418-53_w8950a.jpg" // Replace with the actual profile image path
               alt="Profile"
               sx={{
-                width: 150,
-                height: 150,
+                width: 250,
+                height: 250,
                 margin: '0 auto 20px auto',
                 boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
               }}
+              className=" animate__animated animate__slideInDown animate__infinite animate__slower animate__delay-2s "
             />
             <Box>
               <IconButton
                 aria-label="Instagram"
                 href="https://instagram.com/_sahil.altaf?igshid=NzZlODBkYWE4Ng=="
                 target="_blank"
-                sx={{ color: '#E1306C', mr: 2 }} // Added space between icons
+                sx={{ color: '#E1306C', mr: 2 }}
+                 // Added space between icons
+                 className=" animate__animated animate__rubberBand  animate__infinite animate__slower animate__delay-2s "
               >
                 <InstagramIcon fontSize="large" />
               </IconButton>
@@ -58,6 +61,7 @@ export default function ContactMe() {
                 href="https://github.com/sahilsx"
                 target="_blank"
                 sx={{ color: '#FFFFFF', mr: 2 }} // Added space between icons
+                 className=" animate__animated animate__shakeY  animate__infinite animate__slower animate__delay-2s "
               >
                 <GitHubIcon fontSize="large" />
               </IconButton>
@@ -66,6 +70,7 @@ export default function ContactMe() {
                 href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bj5gjHcQzRdm9WSTJgS0lyw%3D%3D"
                 target="_blank"
                 sx={{ color: '#0A66C2', mr: 2 }} // Added space between icons
+                className=" animate__animated animate__wobble animate__infinite animate__slower animate__delay-2s "
               >
                 <LinkedInIcon fontSize="large" />
               </IconButton>
@@ -73,6 +78,7 @@ export default function ContactMe() {
                 aria-label="Email"
                 href="mailto:itxsaaho@gmail.com"
                 sx={{ color: '#D44638' }} // No need for `mr` on the last icon
+                className=" animate__animated animate__jello  animate__infinite animate__slower animate__delay-2s "
               >
                 <EmailIcon fontSize="large" />
               </IconButton>
@@ -92,7 +98,7 @@ export default function ContactMe() {
                 border: '1px solid rgba(255, 255, 255, 0.18)', // Optional: adds more glass effect
               }}
             >
-              <Typography variant="h5" component="h5" sx={{ fontWeight: 'bold', marginBottom: 2, color: '#FFFFFF' }}>
+              <Typography className=" animate__animated animate__tada  animate__infinite animate__slower animate__delay-2s " variant="h5" component="h5" align='center' sx={{ fontWeight: 'bold', marginBottom: 2, color: '#FFFFFF' }}>
                 Contact Me
               </Typography>
               <TextField
@@ -112,6 +118,7 @@ export default function ContactMe() {
                     },
                   },
                 }}
+                 className=" animate__animated animate__flash animate__infinite animate__slower animate__delay-2s "
               />
               <TextField
                 fullWidth
@@ -130,6 +137,7 @@ export default function ContactMe() {
                     },
                   },
                 }}
+               className=" animate__animated animate__flash animate__infinite animate__slower animate__delay-2s "
               />
               <TextField
                 fullWidth
@@ -148,6 +156,7 @@ export default function ContactMe() {
                     },
                   },
                 }}
+                className=" animate__animated animate__flash animate__infinite animate__slower animate__delay-2s "
               />
               <TextField
                 fullWidth
@@ -168,6 +177,7 @@ export default function ContactMe() {
                     },
                   },
                 }}
+                className=" animate__animated animate__flash animate__infinite animate__slower animate__delay-2s "
               />
               <Button
                 type="submit"
@@ -181,6 +191,7 @@ export default function ContactMe() {
                     backgroundColor: '#0056b3',
                   },
                 }}
+                className=" animate__animated animate__bounce animate__infinite animate__slower animate__delay-2s "
                 fullWidth
               >
                 Send Message
