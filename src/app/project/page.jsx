@@ -110,6 +110,8 @@ import { Box, Container, Grid, Typography, Card,CardMedia, CardContent, Button }
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css'
+import Image from 'next/image';
+import exampleImage from '../../../public/image/ppq.png';
 // Sample slider settings
 const sliderSettings = {
   dots: true,
@@ -126,13 +128,13 @@ export default function Projects() {
     {
       title: "PIXEL PURCHASE",
       description: "Pixel Purchase is a cutting-edge eCommerce platform built with Next.js and styled using Material UI, offering a seamless and responsive user experience. This platform specializes in selling smartphones, delivering an intuitive and visually appealing interface for users , Users can browse through a wide range of smartphones, view detailed product information, add items to their cart, and proceed through a streamlined checkout process. The user interface is designed to be user-friendly and engaging, ensuring a pleasant shopping experience.,Admin FunctionalityAdmins have access to a comprehensive dashboard for managing products, processing orders, and handling user queries. This backend functionality is crucial for maintaining the operational efficiency of the site ,Pixel Purchase is designed to be a powerful and attractive eCommerce solution for smartphone enthusiasts, combining advanced technology with a delightful user experience.",
-      images: ["https://www.bleepstatic.com/content/hl-images/2022/05/18/MSSQL.jpg", "https://www.bleepstatic.com/content/hl-images/2022/05/18/MSSQL.jpg"], // Replace with actual image paths
+      images: ["/image/ppq.png", "/image/pps.png"], // Replace with actual image paths
       link: "https://pixelpurchase.vercel.app/",
     },
     {
       title: "GoFood",
       description: "GoFood is your ultimate companion for exploring a world of culinary delights at your fingertips. Whether you're craving local favorites or adventurous global cuisines, GoFood connects you with a diverse array of food options.",
-      images: ["https://www.bleepstatic.com/content/hl-images/2022/05/18/MSSQL.jpg", "https://www.bleepstatic.com/content/hl-images/2022/05/18/MSSQL.jpg"], // Replace with actual image paths
+      images: ["Screenshot(151).png", "https://www.bleepstatic.com/content/hl-images/2022/05/18/MSSQL.jpg"], // Replace with actual image paths
       link: "#",
     },
     {
@@ -185,7 +187,7 @@ export default function Projects() {
                       height="300"
                       image={image}
                       alt={`Image ${imgIndex + 1} of ${project.title}`}
-                      sx={{ borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }}
+                      sx={{ borderTopLeftRadius: '15px', borderTopRightRadius: '15px', }}
                     />
                   ))}
                 </Slider>
