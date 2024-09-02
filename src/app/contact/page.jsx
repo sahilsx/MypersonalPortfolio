@@ -1,14 +1,73 @@
 
-
-
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
 import { Box, Container, Grid, Typography, TextField, Button, Avatar, IconButton } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function ContactMe() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [loading, setLoading] = React.useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    
+    const { name, email, subject, message } = formData;
+    const data = { name, email, subject, message, access_key: 'c7dec8ca-a213-40e5-a412-8c381ad61c3c' };
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        // Handle success
+        toast('Message sent successfully!');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        // Handle errors
+        toast.error('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }finally {
+      setLoading(false);
+      
+    }
+  };
+
+
+
+
+
+
+
+
+
   return (
     <Box
       sx={{
@@ -87,120 +146,200 @@ export default function ContactMe() {
 
           {/* Contact Form */}
           <Grid item xs={12} md={6}>
-            <Box
-              component="form"
-              sx={{
-                backgroundColor: 'rgba(255, 255, 255, 0.1)', // Semi-transparent background
-                backdropFilter: 'blur(10px)', // Blur effect for glassmorphism
-                borderRadius: '15px',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.37)', // Subtle shadow for depth
-                padding: '30px',
-                border: '1px solid rgba(255, 255, 255, 0.18)', // Optional: adds more glass effect
-              }}
-            >
-              <Typography className=" animate__animated animate__tada  animate__infinite animate__slower animate__delay-2s " variant="h5" component="h5" align='center' sx={{ fontWeight: 'bold', marginBottom: 2, color: '#FFFFFF' }}>
-                Contact Me
-              </Typography>
-              <TextField
-                fullWidth
-                label="Name"
-                variant="outlined"
-                margin="normal"
-                InputLabelProps={{ style: { color: '#FFFFFF' } }}
-                InputProps={{ style: { color: '#FFFFFF', borderColor: '#FFFFFF' } }}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: '#FFFFFF',
-                    },
-                    '&:hover fieldset': {
-                      borderColor: '#007BFF',
-                    },
-                  },
-                }}
-                 className=" animate__animated animate__flash animate__infinite animate__slower animate__delay-2s "
-              />
-              <TextField
-                fullWidth
-                label="Email"
-                variant="outlined"
-                margin="normal"
-                InputLabelProps={{ style: { color: '#FFFFFF' } }}
-                InputProps={{ style: { color: '#FFFFFF' } }}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: '#FFFFFF',
-                    },
-                    '&:hover fieldset': {
-                      borderColor: '#007BFF',
-                    },
-                  },
-                }}
-               className=" animate__animated animate__flash animate__infinite animate__slower animate__delay-2s "
-              />
-              <TextField
-                fullWidth
-                label="Subject"
-                variant="outlined"
-                margin="normal"
-                InputLabelProps={{ style: { color: '#FFFFFF' } }}
-                InputProps={{ style: { color: '#FFFFFF' } }}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: '#FFFFFF',
-                    },
-                    '&:hover fieldset': {
-                      borderColor: '#007BFF',
-                    },
-                  },
-                }}
-                className=" animate__animated animate__flash animate__infinite animate__slower animate__delay-2s "
-              />
-              <TextField
-                fullWidth
-                label="Message"
-                variant="outlined"
-                multiline
-                rows={4}
-                margin="normal"
-                InputLabelProps={{ style: { color: '#FFFFFF' } }}
-                InputProps={{ style: { color: '#FFFFFF' } }}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: '#FFFFFF',
-                    },
-                    '&:hover fieldset': {
-                      borderColor: '#007BFF',
-                    },
-                  },
-                }}
-                className=" animate__animated animate__flash animate__infinite animate__slower animate__delay-2s "
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  backgroundColor: '#007BFF',
-                  color: '#FFFFFF',
-                  fontWeight: 'bold',
-                  marginTop: '20px',
-                  '&:hover': {
-                    backgroundColor: '#0056b3',
-                  },
-                }}
-                className=" animate__animated animate__bounce animate__infinite animate__slower animate__delay-2s "
-                fullWidth
-              >
-                Send Message
-              </Button>
-            </Box>
-          </Grid>
+          <ToastContainer />
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          backgroundColor: 'rgba(255, 255, 255, 0.1)', // Semi-transparent background
+          backdropFilter: 'blur(10px)', // Blur effect for glassmorphism
+          borderRadius: '15px',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.37)', // Subtle shadow for depth
+          padding: '30px',
+          border: '1px solid rgba(255, 255, 255, 0.18)', // Optional: adds more glass effect
+        }}
+      >
+        <Typography
+          className="animate__animated animate__tada animate__infinite animate__slower animate__delay-2s"
+          variant="h5"
+          component="h5"
+          align="center"
+          sx={{ fontWeight: 'bold', marginBottom: 2, color: '#FFFFFF' }}
+        >
+          Contact Me
+        </Typography>
+        
+        <TextField
+          fullWidth
+          label="Name"
+          variant="outlined"
+          margin="normal"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          InputLabelProps={{ style: { color: '#FFFFFF' } }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#FFFFFF',
+              },
+              '&:hover fieldset': {
+                borderColor: '#007BFF',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#007BFF',
+              },
+            },
+            '& .MuiInputLabel-root': {
+              color: '#FFFFFF',
+            },
+            '& .MuiInputBase-input': {
+              color: '#FFFFFF',
+            },
+          }}
+          className="animate__animated animate__flash animate__infinite animate__slower animate__delay-2s"
+        />
+        
+        <TextField
+          fullWidth
+          label="Email"
+          variant="outlined"
+          margin="normal"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          InputLabelProps={{ style: { color: '#FFFFFF' } }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#FFFFFF',
+              },
+              '&:hover fieldset': {
+                borderColor: '#007BFF',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#007BFF',
+              },
+            },
+            '& .MuiInputLabel-root': {
+              color: '#FFFFFF',
+            },
+            '& .MuiInputBase-input': {
+              color: '#FFFFFF',
+            },
+          }}
+          className="animate__animated animate__flash animate__infinite animate__slower animate__delay-2s"
+        />
+        
+        <TextField
+          fullWidth
+          label="Subject"
+          variant="outlined"
+          margin="normal"
+          name="subject"
+          value={formData.subject}
+          onChange={handleChange}
+          InputLabelProps={{ style: { color: '#FFFFFF' } }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#FFFFFF',
+              },
+              '&:hover fieldset': {
+                borderColor: '#007BFF',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#007BFF',
+              },
+            },
+            '& .MuiInputLabel-root': {
+              color: '#FFFFFF',
+            },
+            '& .MuiInputBase-input': {
+              color: '#FFFFFF',
+            },
+          }}
+          className="animate__animated animate__flash animate__infinite animate__slower animate__delay-2s"
+        />
+        
+        <TextField
+          fullWidth
+          label="Message"
+          variant="outlined"
+          multiline
+          rows={4}
+          margin="normal"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          InputLabelProps={{ style: { color: '#FFFFFF' } }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#FFFFFF',
+              },
+              '&:hover fieldset': {
+                borderColor: '#007BFF',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#007BFF',
+              },
+            },
+            '& .MuiInputLabel-root': {
+              color: '#FFFFFF',
+            },
+            '& .MuiInputBase-input': {
+              color: '#FFFFFF',
+            },
+          }}
+          className="animate__animated animate__flash animate__infinite animate__slower animate__delay-2s"
+        />
+        
+        <Button
+          type="submit"
+          variant="contained"
+          disabled ={loading}
+          sx={{
+            backgroundColor: '#007BFF',
+            color: '#FFFFFF',
+            fontWeight: 'bold',
+            marginTop: '20px',
+            '&:hover': {
+              backgroundColor: '#0056b3',
+            },
+          }}
+          className="animate__animated animate__bounce animate__infinite animate__slower animate__delay-2s"
+          fullWidth
+        >
+          {loading ? "Sending..." : "Send message"}
+        </Button>
+      </Box>
+    </Grid>
         </Grid>
       </Container>
     </Box>
   );
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

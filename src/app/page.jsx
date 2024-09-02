@@ -56,7 +56,7 @@ export default function Home() {
           <Grid item xs={12} md={6}>
             <img
               src="https://media.licdn.com/dms/image/D5612AQEhKguQVjXr4g/article-cover_image-shrink_600_2000/0/1693971265825?e=2147483647&v=beta&t=vRAWRIEHIp6sKRbLxQ_QmHTgjmTRYhj8vOLwlhskjzg"
-              alt="Hero"
+              alt=""
               style={{ width: '100%', maxWidth: '400px', margin: '0 auto', display: 'block' }}
             />
           </Grid>
