@@ -1,6 +1,6 @@
 
 
-
+"use client"
 import React from 'react';
 import { Typography, Box, Button, Container, Grid } from '@mui/material';
 import Skills from '@/app/skills/page';
@@ -35,13 +35,16 @@ export default function Home() {
               And I am a passionate <span style={{ color: '#AA00FF' }}>Software Engineer</span>
             </Typography>
             <Box mt={4}>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{ marginRight: 2, backgroundColor: '#3f51b5' }}
-              >
-                Download Resume
-              </Button>
+            <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ marginRight: 2, backgroundColor: '#3f51b5' }}
+                  // onClick={() => window.open('/SahilAltaf.pdf', '_blank')}
+                  href='/SahilAltaf.pdf'
+                  download="/SahilAltaf.pdf"
+                >
+                  Download Resume
+                </Button>
               <Button
               href='https://github.com/sahilsx'
                 variant="contained"
