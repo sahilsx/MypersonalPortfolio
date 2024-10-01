@@ -48,7 +48,7 @@ export default function AboutMe() {
             >
               <Avatar
                 alt="Sahil Altaf"
-                src="https://res.cloudinary.com/dfi2vbznv/image/upload/v1723732226/C360_20240623-203418-53_w8950a.jpg" // Replace with the actual image path
+                src="/image/myimg.jpg" // Replace with the actual image path
                 sx={{
                   width: 250,
                   height: 250,

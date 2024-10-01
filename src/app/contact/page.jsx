@@ -94,7 +94,7 @@ export default function ContactMe() {
           {/* Profile Picture and Social Media Icons */}
           <Grid item xs={12} md={6} sx={{ textAlign: 'center' }}>
             <Avatar
-              src="https://res.cloudinary.com/dfi2vbznv/image/upload/v1723732226/C360_20240623-203418-53_w8950a.jpg" // Replace with the actual profile image path
+              src="/image/myimg.jpg" 
               alt="Profile"
               sx={{
                 width: 250,

@@ -66,7 +66,7 @@ function ResponsiveAppBar() {
             <Avatar
               sx={{ width: 60, height: 60, mr: 2 }} // Adjusted size for better responsiveness
               alt="Sahil"
-              src="https://res.cloudinary.com/dfi2vbznv/image/upload/v1723732226/C360_20240623-203418-53_w8950a.jpg"
+              src="/image/myimg.jpg"
             />
             <Typography
               variant="h6"
