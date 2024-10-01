@@ -38,7 +38,7 @@ export default function Home() {
             <Button
                   variant="contained"
                   color="primary"
-                  sx={{ marginRight: 2, backgroundColor: '#3f51b5' }}
+                  sx={{ marginRight: 4, backgroundColor: '#3f51b5' }}
                   // onClick={() => window.open('/SahilAltaf.pdf', '_blank')}
                   href='/SahilAltaf.pdf'
                   download="/SahilAltaf.pdf"

@@ -58,7 +58,7 @@ function ResponsiveAppBar() {
 
   return (
       <>
-    <AppBar style={{ backgroundColor: '#16151e' }}position="static">
+    <AppBar style={{ backgroundColor: '#16151e',margin: '0 0 0 0',position: 'fixed', top: 0, left: 0, right: 0,zIndex: 1000,padding: '0 0 0 0'}} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Avatar and Brand on the left */}
@@ -78,7 +78,7 @@ function ResponsiveAppBar() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'inherit',
+                color: 'white',
                 textDecoration: 'none',
               }}
             >
@@ -191,47 +191,7 @@ function ResponsiveAppBar() {
             </Button>
           </Box>
 
-          {/* User menu */}
-          {/* <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  sx={{ width: 40, height: 40 }} // Adjusted size for better responsiveness
-                  alt="Sahil"
-                  src="https://res.cloudinary.com/dfi2vbznv/image/upload/v1723732226/C360_20240623-203418-53_w8950a.jpg"
-                />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Profile</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Account</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Dashboard</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Logout</Typography>
-              </MenuItem>
-            </Menu>
-          </Box> */}
+          
         </Toolbar>
       </Container>
       
