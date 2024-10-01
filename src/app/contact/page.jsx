@@ -175,6 +175,7 @@ export default function ContactMe() {
           variant="outlined"
           margin="normal"
           name="name"
+          required
           value={formData.name}
           onChange={handleChange}
           InputLabelProps={{ style: { color: '#FFFFFF' } }}
@@ -205,6 +206,7 @@ export default function ContactMe() {
           label="Email"
           variant="outlined"
           margin="normal"
+          required
           name="email"
           value={formData.email}
           onChange={handleChange}
@@ -237,6 +239,7 @@ export default function ContactMe() {
           variant="outlined"
           margin="normal"
           name="subject"
+          required
           value={formData.subject}
           onChange={handleChange}
           InputLabelProps={{ style: { color: '#FFFFFF' } }}
@@ -265,6 +268,7 @@ export default function ContactMe() {
         <TextField
           fullWidth
           label="Message"
+          required
           variant="outlined"
           multiline
           rows={4}
