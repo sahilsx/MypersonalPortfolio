@@ -1,114 +1,245 @@
 "use client";
-import React from "react";
-import Slider from "react-slick";
-import { motion } from "framer-motion";
-import { Box, Typography } from "@mui/material";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useEffect, useRef } from "react";
+import { Box, Container, Typography } from "@mui/material";
 import { keyframes } from "@emotion/react";
+import { motion } from "framer-motion";
 
-// Gradient animation
-const animatedGradient = keyframes`
+// Gradient background animation
+const gradientShift = keyframes`
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 `;
 
-const skills = [
-  { name: "JavaScript", icon: "/skills/js.png" },
-  { name: "React", icon: "/skills/react.png" },
-  { name: "Node.js", icon: "/skills/node.png" },
-  { name: "MongoDB", icon: "/skills/mongo.png" },
-  { name: "Express", icon: "/skills/express.png" },
-  { name: "Sequelize", icon: "/skills/sequelize.png" },
-  { name: "Socket.IO", icon: "/skills/socket.png" },
-  { name: "Agora", icon: "/skills/agora.png" },
-  { name: "Framer Motion", icon: "/skills/framer.png" },
-  { name: "Tailwind CSS", icon: "/skills/tailwind.png" },
-];
+// Fog effect animation
+const fogShift = keyframes`
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+`;
 
-const SkillsSection = () => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 800,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    arrows: false,
-    responsive: [
-      { breakpoint: 1200, settings: { slidesToShow: 4 } },
-      { breakpoint: 900, settings: { slidesToShow: 3 } },
-      { breakpoint: 600, settings: { slidesToShow: 3 } }, // Ensure at least 3 on small screens
-    ],
-  };
+// Fog overlay style - matching the main page exactly
+const darkAnimatedOverlay = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundImage: `radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%)`,
+  backgroundSize: "400% 400%",
+  animation: `${fogShift} 60s ease-in-out infinite`,
+  zIndex: 0,
+};
+
+// Skills carousel animation
+const slideLeft = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+`;
+
+// Glow effect for skills
+const glowEffect = keyframes`
+  0% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.7); }
+  100% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.3); }
+`;
+
+const Skills = () => {
+  const skills = [
+    "JavaScript",
+    "React",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "PostgreSQL",
+    "TypeScript",
+    "Git",
+    "Next.js",
+    "HTML5",
+    "CSS3",
+    "Redux",
+    "GraphQL",
+    "AWS",
+    "Docker",
+  ];
+
+  // Create duplicated array for infinite scroll effect
+  const duplicatedSkills = [...skills, ...skills];
+
+  // Reference for the animation
+  const animationRef = useRef(null);
+
+  // Pause animation on hover
+  useEffect(() => {
+    const container = document.querySelector(".skills-track");
+    if (container) {
+      container.addEventListener("mouseenter", () => {
+        container.style.animationPlayState = "paused";
+      });
+      container.addEventListener("mouseleave", () => {
+        container.style.animationPlayState = "running";
+      });
+    }
+  }, []);
 
   return (
     <Box
       sx={{
-        py: 10,
-        background:
-          "linear-gradient(270deg, #AA00FF, #FF0080, #00D4FF, #AA00FF)",
-        backgroundSize: "600% 600%",
-        animation: `${animatedGradient} 20s ease infinite`,
-        textAlign: "center",
-        color: "#fff",
-        height: { xs: "40vh", md: "50vh" },
+        position: "relative",
+        minHeight: "40vh",
+        px: { xs: 2, sm: 4 },
+        py: 0,
+        mt: { xs: -7, md: 0 },
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
       }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <Typography variant="h4" sx={{ mb: 4, fontWeight: "bold" }}>
-          My Skills
-        </Typography>
-      </motion.div>
+      {/* Gradient Layer - exact match to main page */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundImage: `linear-gradient(270deg, #0f2027, #203a43, #2c5364)`,
+          backgroundSize: "500% 500%",
+          animation: `${gradientShift} 30s ease infinite`,
+          zIndex: -3,
+        }}
+      />
 
-      <Slider {...settings}>
-        {skills.map((skill, index) => (
-          <motion.div
-            key={skill.name}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true }}
+      {/* Foggy Overlay - exact match to main page */}
+      <Box sx={{ ...darkAnimatedOverlay, zIndex: -1 }} />
+
+      {/* Skills Content */}
+      <Container maxWidth="lg" sx={{ zIndex: 1, position: "relative" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Typography
+            variant="h4"
+            component="h2"
+            sx={{
+              color: "#00D4FF",
+              textAlign: "center",
+              fontWeight: "bold",
+              mb: 6,
+              position: "relative",
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                width: "60px",
+                height: "4px",
+                backgroundColor: "#00D4FF",
+                bottom: -12,
+                left: "50%",
+                transform: "translateX(-50%)",
+                borderRadius: "2px",
+              },
+            }}
+          >
+            My Skills
+          </Typography>
+
+          {/* Skills Carousel Container */}
+          <Box
+            sx={{
+              width: "100%",
+              overflow: "hidden",
+              position: "relative",
+              "&::before, &::after": {
+                content: '""',
+                position: "absolute",
+                width: "100px",
+                height: "100%",
+                top: 0,
+                zIndex: 2,
+              },
+              "&::before": {
+                left: 0,
+                background:
+                  "linear-gradient(90deg, #0f2027 0%, transparent 100%)",
+              },
+              "&::after": {
+                right: 0,
+                background:
+                  "linear-gradient(90deg, transparent 0%, #0f2027 100%)",
+              },
+            }}
           >
             <Box
+              className="skills-track"
               sx={{
-                width: "100%",
-                maxWidth: 100,
-                height: 100,
-                borderRadius: "50%",
-                background: "rgba(255, 255, 255, 0.1)",
-                border: "2px solid rgba(255, 255, 255, 0.4)",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
                 display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                backdropFilter: "blur(5px)",
-                mx: "auto",
-                my: 2,
+                width: "fit-content",
+                animation: `${slideLeft} 30s linear infinite`,
+                "&:hover": {
+                  animationPlayState: "paused",
+                },
               }}
+              ref={animationRef}
             >
-              <img
-                src={skill.icon}
-                alt={skill.name}
-                style={{ width: 40, height: 40 }}
-              />
-              <Typography variant="body2" sx={{ mt: 1, fontWeight: 500 }}>
-                {skill.name}
-              </Typography>
+              {duplicatedSkills.map((skill, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.1, y: -10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Box
+                    sx={{
+                      mx: 2,
+                      px: 4,
+                      py: 2,
+                      borderRadius: "16px",
+                      backgroundColor: "rgba(255,255,255,0.07)",
+                      color: "#fff",
+                      fontWeight: 500,
+                      whiteSpace: "nowrap",
+                      backdropFilter: "blur(10px)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      transition: "all 0.3s ease",
+                      animation: `${glowEffect} ${
+                        3 + (index % 5)
+                      }s infinite ease-in-out`,
+                      "&:hover": {
+                        backgroundColor: "rgba(0, 212, 255, 0.15)",
+                        color: "#00D4FF",
+                        boxShadow: "0 0 25px rgba(0, 212, 255, 0.7)",
+                      },
+                    }}
+                  >
+                    {skill}
+                  </Box>
+                </motion.div>
+              ))}
             </Box>
-          </motion.div>
-        ))}
-      </Slider>
+          </Box>
+
+          {/* Mobile Skills Display (for very small screens) */}
+          <Box
+            sx={{
+              display: { xs: "block", sm: "none" },
+              mt: 4,
+              textAlign: "center",
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{
+                color: "rgba(255,255,255,0.7)",
+                mb: 2,
+              }}
+            ></Typography>
+          </Box>
+        </motion.div>
+      </Container>
     </Box>
   );
 };
 
-export default SkillsSection;
+export default Skills;

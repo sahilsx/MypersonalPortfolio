@@ -18,12 +18,32 @@ import AboutMe from "./about/page";
 import Projects from "./project/page";
 import ContactMe from "./contact/page";
 
-// Gradient animation
+// Gradient background animation
 const gradientShift = keyframes`
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 `;
+
+// Fog effect animation
+const fogShift = keyframes`
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+`;
+
+// Fog overlay style
+const darkAnimatedOverlay = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundImage: `radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%)`,
+  backgroundSize: "400% 400%",
+  animation: `${fogShift} 60s ease-in-out infinite`,
+  zIndex: 0,
+};
 
 export default function Home() {
   const particlesInit = useCallback(async (main) => {
@@ -36,7 +56,7 @@ export default function Home() {
       <CssBaseline />
       <GlobalStyles
         styles={{
-          html: { margin: 0, padding: 0 },
+          html: { margin: 0, padding: 0, scrollBehavior: "smooth" },
           body: { margin: 0, padding: 0, overflowX: "hidden" },
         }}
       />
@@ -56,6 +76,22 @@ export default function Home() {
         <ParticleBackground init={particlesInit} />
       </Box>
 
+      {/* Foggy Gradient Layer */}
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundImage: `linear-gradient(270deg, #0f2027, #203a43, #2c5364)`,
+          backgroundSize: "500% 500%",
+          animation: `${gradientShift} 30s ease infinite`,
+          zIndex: -3,
+        }}
+      />
+      <Box sx={{ ...darkAnimatedOverlay, zIndex: -1 }} />
+
       {/* Hero Section */}
       <Box
         sx={{
@@ -63,11 +99,7 @@ export default function Home() {
           display: "flex",
           alignItems: "center",
           position: "relative",
-          backgroundImage: `linear-gradient(270deg, #AA00FF, #FF0080, #00D4FF, #AA00FF)`,
-          backgroundSize: "600% 600%",
-          animation: `${gradientShift} 20s ease infinite`,
-          overflow: "hidden",
-          px: { xs: 2, sm: 4 }, // Responsive horizontal padding
+          px: { xs: 2, sm: 4 },
         }}
       >
         <Container
@@ -76,7 +108,7 @@ export default function Home() {
           sx={{ position: "relative", zIndex: 1 }}
         >
           <Grid container spacing={6} alignItems="center">
-            {/* Text */}
+            {/* Text Column */}
             <Grid item xs={12} md={6}>
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
@@ -173,7 +205,7 @@ export default function Home() {
               </motion.div>
             </Grid>
 
-            {/* Image */}
+            {/* Image Column */}
             <Grid item xs={12} md={6}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.85 }}
@@ -193,7 +225,7 @@ export default function Home() {
                     }}
                   >
                     <img
-                      src="https://media.licdn.com/dms/image/D5612AQEhKguQVjXr4g/article-cover_image-shrink_600_2000/0/1693971265825?e=2147483647&v=beta&t=vRAWRIEHIp6sKRbLxQ_QmHTgjmTRYhj8vOLwlhskjzg"
+                      src="https://res.cloudinary.com/teepublic/image/private/s--UMnvreyd--/t_Preview/b_rgb:191919,c_limit,f_auto,h_630,q_90,w_630/v1607967119/production/designs/17360049_0.jpg"
                       alt="Sahil's Portfolio"
                       style={{
                         width: "100%",
@@ -209,18 +241,50 @@ export default function Home() {
         </Container>
       </Box>
 
-      {/* Other Sections */}
-      {[Skills, AboutMe, Projects, ContactMe].map((Component, index) => (
+      {/* Sections */}
+      <Box id="skills" sx={{}}>
         <motion.div
-          key={index}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: index * 0.2 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <Component />
+          <Skills />
         </motion.div>
-      ))}
+      </Box>
+
+      <Box id="about" sx={{}}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <AboutMe />
+        </motion.div>
+      </Box>
+
+      <Box id="projects" sx={{}}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <Projects />
+        </motion.div>
+      </Box>
+
+      <Box id="contact" sx={{}}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <ContactMe />
+        </motion.div>
+      </Box>
     </>
   );
 }

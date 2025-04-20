@@ -15,15 +15,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import WorkIcon from "@mui/icons-material/Work";
 import InfoIcon from "@mui/icons-material/Info";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
-import { useRouter } from "next/navigation";
-import { keyframes } from "@emotion/react";
 
-// Gradient animation
-const gradientShift = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -52,18 +44,18 @@ function ResponsiveAppBar() {
     px: 1,
     py: 0.5,
     "&:hover": {
-      background: "rgba(255,255,255,0.15)",
-      backdropFilter: "blur(4px)",
+      background: "rgba(255,255,255,0.1)",
+      backdropFilter: "blur(6px)",
     },
   };
 
   return (
     <AppBar
-      position="static"
+      position="fixed" // Make it fixed so it blends with the home section
       sx={{
-        backgroundImage: `linear-gradient(270deg, #AA00FF, #FF0080, #00D4FF, #AA00FF)`,
-        backgroundSize: "600% 600%",
-        animation: `${gradientShift} 20s ease infinite`,
+        backgroundColor: "transparent", // Make navbar transparent
+        boxShadow: "none", // Remove shadow for seamless blend
+        backdropFilter: "blur(8px)", // Optional: for a soft blur effect
       }}
     >
       <Container maxWidth="xl">
@@ -89,11 +81,11 @@ function ResponsiveAppBar() {
                 fontSize: { xs: "0.9rem", sm: "1.1rem", md: "1.4rem" },
               }}
             >
-              Sahil's Portfolio
+              Sahil Altaf
             </Typography>
           </Box>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Menu */}
           <IconButton
             size="large"
             aria-label="open menu"
@@ -141,7 +133,7 @@ function ResponsiveAppBar() {
             ))}
           </Menu>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav Buttons */}
           <Box
             sx={{
               flexGrow: 1,
@@ -184,4 +176,4 @@ function ResponsiveAppBar() {
   );
 }
 
-module.exports = ResponsiveAppBar;
+export default ResponsiveAppBar;

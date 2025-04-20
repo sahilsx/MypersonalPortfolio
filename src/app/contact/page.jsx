@@ -17,11 +17,34 @@ import EmailIcon from "@mui/icons-material/Email";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { keyframes } from "@emotion/react";
+
+// Gradient background animation
 const gradientShift = keyframes`
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 `;
+
+// Fog effect animation
+const fogShift = keyframes`
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+`;
+
+// Fog overlay style
+const darkAnimatedOverlay = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundImage: `radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%)`,
+  backgroundSize: "400% 400%",
+  animation: `${fogShift} 60s ease-in-out infinite`,
+  zIndex: 0,
+};
+
 export default function ContactMe() {
   const [formData, setFormData] = useState({
     name: "",
@@ -81,15 +104,32 @@ export default function ContactMe() {
     <Box
       id="contact"
       sx={{
-        background:
-          "linear-gradient(270deg, #AA00FF, #FF0080, #00D4FF, #AA00FF)",
-        backgroundSize: "600% 600%",
-        animation: `${gradientShift} 20s ease infinite`,
+        position: "relative",
+        minHeight: "100vh",
         py: { xs: 6, md: 10 },
+        overflow: "hidden",
       }}
     >
+      {/* Gradient Background Layer */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundImage: `linear-gradient(270deg, #0f2027, #203a43, #2c5364)`,
+          backgroundSize: "500% 500%",
+          animation: `${gradientShift} 30s ease infinite`,
+          zIndex: -3,
+        }}
+      />
+
+      {/* Foggy Overlay */}
+      <Box sx={{ ...darkAnimatedOverlay, zIndex: -1 }} />
+
       <ToastContainer />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
         <Box
           sx={{
             paddingBottom: "20px",
