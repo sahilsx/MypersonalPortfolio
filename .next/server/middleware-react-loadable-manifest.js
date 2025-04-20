@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST='{"src\\\\app\\\\page.jsx -> tsparticles":{"id":7104,"files":[]}}';
