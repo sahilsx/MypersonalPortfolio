@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"src\\\\app\\\\about\\\\page.jsx -> tsparticles\":{\"id\":\"src\\\\app\\\\about\\\\page.jsx -> tsparticles\",\"files\":[]},\"src\\\\app\\\\page.jsx -> tsparticles\":{\"id\":\"src\\\\app\\\\page.jsx -> tsparticles\",\"files\":[]}}"
+self.__REACT_LOADABLE_MANIFEST='{"src\\\\app\\\\about\\\\page.jsx -> tsparticles":{"id":7104,"files":[]},"src\\\\app\\\\page.jsx -> tsparticles":{"id":7104,"files":[]}}';

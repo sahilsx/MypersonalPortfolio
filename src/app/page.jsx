@@ -16,7 +16,7 @@ import ParticleBackground from "./particles/page";
 import Skills from "./skills/page";
 import AboutMe from "./about/page";
 import Projects from "./project/page";
-import ContactMe from "./Contact/page";
+import ContactMe from "./contact/page";
 
 // Gradient background animation
 const gradientShift = keyframes`
