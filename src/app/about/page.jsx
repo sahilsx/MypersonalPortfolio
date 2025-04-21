@@ -54,6 +54,7 @@ export default function AboutMe() {
         display: "flex",
         alignItems: "center",
         px: { xs: 2, sm: 4 },
+        mb: { xs: 0.1, md: 0.1 },
         overflow: "hidden",
       }}
     >

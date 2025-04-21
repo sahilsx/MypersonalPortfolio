@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import {
   Box,
@@ -9,6 +10,8 @@ import {
   Button,
   Avatar,
   IconButton,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -32,20 +35,10 @@ const fogShift = keyframes`
   100% { background-position: 0% 0%; }
 `;
 
-// Fog overlay style
-const darkAnimatedOverlay = {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100%",
-  backgroundImage: `radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%)`,
-  backgroundSize: "400% 400%",
-  animation: `${fogShift} 60s ease-in-out infinite`,
-  zIndex: 0,
-};
-
 export default function ContactMe() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -56,7 +49,7 @@ export default function ContactMe() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((f) => ({ ...f, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -75,25 +68,16 @@ export default function ContactMe() {
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
       if (response.ok) {
         toast.success("✅ Message sent successfully!");
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         toast.error("❌ Failed to send message. Please try again.");
       }
-    } catch (error) {
-      console.error("Error:", error);
+    } catch {
       toast.error("❌ An unexpected error occurred.");
     } finally {
       setLoading(false);
@@ -108,35 +92,40 @@ export default function ContactMe() {
         minHeight: "100vh",
         py: { xs: 6, md: 10 },
         overflow: "hidden",
+        background:
+          "linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)",
+        mb: { xs: 0.2, md: 0.2 },
+        mt: { xs: 0.2, md: 0.2 },
       }}
     >
-      {/* Gradient Background Layer */}
+      {/* Animated gradient layer */}
       <Box
         sx={{
           position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundImage: `linear-gradient(270deg, #0f2027, #203a43, #2c5364)`,
+          inset: 0,
+          background: "linear-gradient(270deg,#0f2027,#203a43,#2c5364)",
           backgroundSize: "500% 500%",
           animation: `${gradientShift} 30s ease infinite`,
-          zIndex: -3,
+          zIndex: -2,
         }}
       />
 
-      {/* Foggy Overlay */}
-      <Box sx={{ ...darkAnimatedOverlay, zIndex: -1 }} />
+      {/* Fog overlay */}
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%)",
+          backgroundSize: "400% 400%",
+          animation: `${fogShift} 60s ease-in-out infinite`,
+          zIndex: -1,
+        }}
+      />
 
       <ToastContainer />
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        <Box
-          sx={{
-            paddingBottom: "20px",
-            marginBottom: "40px",
-            textAlign: "center",
-          }}
-        >
+        <Box sx={{ textAlign: "center", mb: { xs: 4, md: 6 } }}>
           <Typography
             variant="h3"
             sx={{
@@ -149,7 +138,7 @@ export default function ContactMe() {
                 position: "absolute",
                 width: "60%",
                 height: "4px",
-                backgroundColor: "#00D4FF",
+                background: "linear-gradient(90deg,#00D4FF,#7500F8)",
                 bottom: -8,
                 left: "20%",
                 borderRadius: "2px",
@@ -161,39 +150,37 @@ export default function ContactMe() {
         </Box>
 
         <Grid container spacing={5} alignItems="center">
+          {/* Profile & Socials */}
           <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
             <Avatar
               src="/image/myimg.jpg"
               alt="Profile"
               sx={{
-                width: { xs: 180, md: 250 },
-                height: { xs: 180, md: 250 },
-                margin: "0 auto 20px",
-                boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
+                width: isMobile ? 140 : 200,
+                height: isMobile ? 140 : 200,
+                mx: "auto",
+                mb: 2,
+                boxShadow: "0 8px 16px rgba(0,0,0,0.3)",
               }}
-              className="animate__animated animate__zoomIn"
             />
             <Box>
               <IconButton
                 aria-label="Instagram"
-                href="https://instagram.com/_sahil.altaf"
-                target="_blank"
+                href="#"
                 sx={{ color: "#E1306C", mr: 2 }}
               >
                 <InstagramIcon fontSize="large" />
               </IconButton>
               <IconButton
                 aria-label="GitHub"
-                href="https://github.com/sahilsx"
-                target="_blank"
+                href="#"
                 sx={{ color: "#fff", mr: 2 }}
               >
                 <GitHubIcon fontSize="large" />
               </IconButton>
               <IconButton
                 aria-label="LinkedIn"
-                href="https://www.linkedin.com/in/sahil-altaf"
-                target="_blank"
+                href="#"
                 sx={{ color: "#0A66C2", mr: 2 }}
               >
                 <LinkedInIcon fontSize="large" />
@@ -214,16 +201,15 @@ export default function ContactMe() {
               component="form"
               onSubmit={handleSubmit}
               sx={{
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
-                backdropFilter: "blur(10px)",
-                borderRadius: "15px",
-                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.37)",
-                padding: "30px",
-                border: "1px solid rgba(255, 255, 255, 0.18)",
+                backgroundColor: "rgba(18,30,38,0.65)",
+                backdropFilter: "blur(16px)",
+                borderRadius: 3,
+                boxShadow: "0 8px 32px rgba(0,0,0,0.37)",
+                p: { xs: 2, md: 4 },
+                border: "1px solid rgba(255,255,255,0.05)",
               }}
             >
               <Typography
-                className="animate__animated animate__fadeInUp"
                 variant="h5"
                 align="center"
                 sx={{ fontWeight: "bold", mb: 2, color: "#fff" }}
@@ -246,12 +232,15 @@ export default function ContactMe() {
                   rows={field === "message" ? 4 : 1}
                   InputLabelProps={{ style: { color: "#fff" } }}
                   sx={{
-                    "& .MuiOutlinedInput-root": {
-                      "& fieldset": { borderColor: "#fff" },
-                      "&:hover fieldset": { borderColor: "#007BFF" },
-                      "&.Mui-focused fieldset": { borderColor: "#007BFF" },
+                    "& .MuiOutlinedInput-root fieldset": {
+                      borderColor: "#fff",
                     },
-                    "& .MuiInputLabel-root": { color: "#fff" },
+                    "& .MuiOutlinedInput-root:hover fieldset": {
+                      borderColor: "#00D4FF",
+                    },
+                    "& .MuiOutlinedInput-root.Mui-focused fieldset": {
+                      borderColor: "#00D4FF",
+                    },
                     "& .MuiInputBase-input": { color: "#fff" },
                   }}
                 />
@@ -264,9 +253,10 @@ export default function ContactMe() {
                 disabled={loading}
                 sx={{
                   mt: 2,
-                  backgroundColor: "#007BFF",
-                  color: "#fff",
-                  "&:hover": { backgroundColor: "#0056b3" },
+                  background: "linear-gradient(90deg,#00D4FF,#7500F8)",
+                  "&:hover": {
+                    background: "linear-gradient(90deg,#00B4DF,#6400D8)",
+                  },
                 }}
               >
                 {loading ? "Sending..." : "Send Message"}

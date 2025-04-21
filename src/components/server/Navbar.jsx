@@ -51,7 +51,7 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar
-      position="fixed" // Make it fixed so it blends with the home section
+      position="static" // Make it fixed so it blends with the home section
       sx={{
         backgroundColor: "transparent", // Make navbar transparent
         boxShadow: "none", // Remove shadow for seamless blend
@@ -138,22 +138,15 @@ function ResponsiveAppBar() {
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
-              justifyContent: "center",
+              justifyContent: "end",
             }}
           >
-            <Button
-              onClick={() => handleNavigation("home")}
-              sx={navButton}
-              startIcon={<HomeIcon />}
-            >
-              Home
-            </Button>
             <Button
               onClick={() => handleNavigation("projects")}
               sx={navButton}
               startIcon={<WorkIcon />}
             >
-              Projects
+              Portfolio
             </Button>
             <Button
               onClick={() => handleNavigation("about")}

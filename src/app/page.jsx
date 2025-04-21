@@ -16,7 +16,7 @@ import ParticleBackground from "./particles/page";
 import Skills from "./skills/page";
 import AboutMe from "./about/page";
 import Projects from "./project/page";
-import ContactMe from "./contact/page";
+import ContactMe from "./Contact/page";
 
 // Gradient background animation
 const gradientShift = keyframes`
@@ -38,7 +38,7 @@ const darkAnimatedOverlay = {
   top: 0,
   left: 0,
   width: "100%",
-  height: "100%",
+  height: "100vh",
   backgroundImage: `radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%)`,
   backgroundSize: "400% 400%",
   animation: `${fogShift} 60s ease-in-out infinite`,
@@ -69,7 +69,7 @@ export default function Home() {
           top: 0,
           left: 0,
           width: "100vw",
-          height: "100vh",
+          height: "110vh",
           zIndex: -2,
         }}
       >
@@ -83,7 +83,7 @@ export default function Home() {
           top: 0,
           left: 0,
           width: "100%",
-          height: "100%",
+          height: "110vh",
           backgroundImage: `linear-gradient(270deg, #0f2027, #203a43, #2c5364)`,
           backgroundSize: "500% 500%",
           animation: `${gradientShift} 30s ease infinite`,
@@ -95,7 +95,7 @@ export default function Home() {
       {/* Hero Section */}
       <Box
         sx={{
-          minHeight: "100vh",
+          minHeight: "110vh",
           display: "flex",
           alignItems: "center",
           position: "relative",
